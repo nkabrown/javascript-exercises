@@ -1,0 +1,31 @@
+#wrapper {
+	width: 900px;
+	margin: 0 auto;
+	font-family: 'Helvetica', sans-serif;
+}
+
+#top {
+	margin-left: 50px;
+	margin-top: 50px;
+}
+
+h1 {
+	font-size: 3em;
+	font-weight: 100;
+	text-align: center;
+}
+
+#exercises {
+	margin-left: 150px;
+	margin-top: 75px;
+}
+
+a:link {
+	color: #A06055;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #A9311C;
+	text-decoration: none;
+}

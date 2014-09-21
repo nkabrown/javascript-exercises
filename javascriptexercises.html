@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<title>JavaScript Exercises</title>
+	<script>
+	$(document).ready(function() {	
+		//For loop
+		var meals = ["breakfast", "lunch", "dinner"];
+		var timeOfDay = ["morning", "afternoon", "evening"];
+		var mealTimes = [meals, timeOfDay];
+
+		for(i = 0; i < meals.length; i++){
+			console.log(meals[i]);
+		}
+
+		for(i = 0; i < timeOfDay.length; i++){
+			console.log(timeOfDay[i]);
+		}
+
+		for(i = 0; i < mealTimes.length; i++){
+			console.log(mealTimes[i]);
+		}
+
+		//While loop - 99 bottles of root beer
+		var rb = 99
+
+		while(rb > 0) {
+			if(rb < 2 && rb > 0) {
+				console.log(rb + " bottle of root beer on the wall, "+rb+" bottle of root beer...take one down, pass it around "+(rb-1)+" bottles of beer on the wall");
+			}else{
+				console.log(rb + " bottles of root beer on the wall, "+rb+" bottles of root beer...take one down, pass it around "+(rb-1)+" bottles of beer on the wall");
+			}
+
+			rb--;
+		}
+
+		//Variable Scope exercise: global and local variables
+		var a = 10000
+
+		function myBar(a){
+			var a = 100
+			console.log("Local variable is "+ a)
+		}
+
+
+		myBar();
+
+		console.log("Global variable is "+ a);
+
+		//Function that checks if a word is a palindrome
+		var word = prompt("See if your word is a palindrome.")
+		var firstWord = word;
+		console.log(firstWord)
+		var secondWord = firstWord.split("").reverse().join("");
+		console.log(secondWord)
+			
+		function palindrome(word){
+			
+			if(firstWord === secondWord) {
+				alert("I am a palindrome");
+				return false;
+			} else {
+				alert("I am not a palindrome");
+				return false;
+			}	
+					
+		}		
+			
+		palindrome();
+
+		//Function that accepts a string as an argument an check it for vowels
+		var word = "";
+		var vowels = ["a", "e", "i", "o", "u"];
+		console.log(vowels);
+		function countVowels(word){
+			var vowelCount = 0;
+			console.log(word);
+			var arr = word.split("");
+			console.log(arr);
+
+
+			for(i = 0; i < vowels.length; i++){
+				if(arr.indexOf(vowels[i]) != -1){
+					vowelCount++;
+				}
+
+				if(vowelCount = 1){
+					console.log("There is " +vowelCount+ " vowel.");
+				}else if(vowelCoun > 1){
+					console.log("There are " +vowelCount+ " vowels.");
+				}else{
+					console.log("There are no vowels.");
+				}
+			}
+		}
+
+		countVowels("pig");
+
+		//jQuery program to alert user when 
+		$("form").submit(function(){
+					var name = $("#name").val();
+					console.log(name)
+					alert("I am "+ name);
+					return false;
+		});
+
+		//Date validation exercise
+		//define expected date format
+		var myDate = "02/29/2010";//prompt("Type a date in the following format: mm/dd/yyyy");//"2/29/2012";
+		//break string into array where i can divide month, day and year
+		myDate = myDate.split("/");
+		console.log(myDate);
+	 
+		var d = new Date();
+		var currentYear = d.getFullYear();
+		//incorrect date formats
+		//09-10-2014, Sept. 10 2014.
+		//make array of leap years from 1900
+		var leapYears = [];
+		for(var i = 1900; i <= currentYear; i++){
+			if(leapYear(i)){
+				leapYears.push(i);
+				console.log(i)
+			}
+		}
+		//make array of months' day count
+		var dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	 
+		console.log(leapYears);
+		console.log("-----------");
+		console.log(myDate[2].length);
+		//alert(leapYears.indexOf(myDate[2]));
+		
+		if(myDate[2].length == 4){
+			if(myDate[2]>1900 && myDate[2] <= currentYear){
+				if(leapYears.indexOf(myDate[2]) != -1){
+					dayCount[1] = 29;
+				}else{
+					dayCount[1] = 28;
+				}
+			}else{
+				console.log("Sorry, you can't use future years");
+			}
+		}else{
+			console.log("Incorrect year format")
+		}
+	 
+		console.log("leap year feb daycount: "+ dayCount[1]);
+		console.log("-----------");
+	 
+		///check that month is not less than 0 or more than 12
+		if(myDate[0] > 0 && myDate[0] < 13){
+			console.log("Correct Month Number!!! Checking day next");
+	 
+			//check the month and make sure the day number does not exceed the month's day count or that the day is less than 0
+			var monthNumber = parseInt(myDate[0]);
+			var dayLimit = dayCount[monthNumber - 1];
+			var dayNumber = myDate[1];
+	 
+			console.log("Month: " +myDate[0]);
+			console.log("Month: " + monthNumber);
+			console.log("Days in this month: "+ dayLimit);
+			console.log(dayNumber);
+	 
+			if(dayNumber > 0 && dayNumber <= dayLimit){
+				console.log("Correct day Number");
+	 
+				//check that the year has four numbers
+				console.log(typeof(myDate[2]));
+				console.log(myDate[2].length); //4 is correct number
+				//if(myDate[2].length > 0 && myDate[2].length < 5){
+				if(myDate[2].length == 4){
+					console.log("Year has correct format");
+					
+					console.log(currentYear);
+					//check that the year is leap year or not
+					if(leapYears.indexOf(myDate[2])){
+						console.log("You added a leap year");
+					}else{
+						console.log("Not a leap year");
+					}
+					//check if the year is between 1900 and current year - dynamically
+	 
+					if(myDate[2]>1900 && myDate[2] <= currentYear){
+						console.log("Perfect!");
+						//alert("well done!");
+					}else{
+						console.log("Sorry, you can't use future years");
+					}
+				}else{
+					console.log("Incorrect year format");
+				}
+				
+			}else{
+				console.log("Incorrect day number, please try again");
+			}
+	 
+		}else{
+			console.log("Incorrect Month Number");
+			
+		}
+	 
+		
+	 
+		function leapYear(year)
+		{
+		  return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+		}
+	 
+		console.log(leapYear(2012));
+
+		//find the most frequent item in an array
+		var arr = ["b", "c", "a", "b"];
+		var max = arr[0];
+	   	i = 0
+
+    	for (i in arr){
+	
+      		if (arr[i] == max){
+	       		max = arr[i]
+
+      		} else{
+	       		max = max
+     		}
+      
+			i++;
+	   	}
+
+	   	console.log(max);
+
+		/*jQuery exercise - When the user pressed a key on your web 
+		page, tell them if that key is a letter or a 
+		number. This result (“letter” or “number”) should 
+		be displayed in an H1 on the page*/
+		$("#target").on('keypress', function(e) {
+			var value = String.fromCharCode(e.charCode);
+			if(e.charCode >= 65 && e.charCode <= 122) {
+				$("h1").html("Your Letter is "+ value);
+				return false;
+			}
+
+			else if(e.charCode >= 48 && e.charCode <= 57) {
+				$("h1").html("You Number is "+ value);
+				return false;
+			}
+
+			else {
+				alert("Type only numbers or letters");
+				return false;
+			}
+		});
+
+
+	});
+	</script>
+</head>
+<body>
+	<p>Please open up the page source to view the javascript exercises.</p>
+	<p>Open the DevTool Console (CMD-OPT-J) to view solutions to exercises that do not utilize alerts or form inputs.</p>
+	<br>
+	<form action="process" method="POST">
+			<label for="text">Your Name</label>
+				<input type="text" name="name" placeholder="your name" id="name">
+				<input type="submit" id="btnSubmit" value="Submit">
+	</form>
+	<br>
+	<form action="process" method="POST" id="form1">
+			<label for="text">Input a letter or a number</label>
+				<input type="text" name="text" id="target">
+				<h1></h1>
+	</form>
+</body>
+</html>
